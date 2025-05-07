@@ -14,11 +14,14 @@ const STAGE_MAP: { [k: string]: StageEnvType } = {
   prod: 'prod',
 };
 /**
+ * If you modify yml config basedir you can SET env.YML_CONF_BASE
  *
- * @param confBaseDir
  */
-export const yamlConfigLoader = (confBaseDir: string = '.conf') => {
+export const yamlConfigLoader = () => {
   const stage = process.env.STAGE || 'prod';
+
+  let confBaseDir = process.env.YML_CONF_BASE;
+  if (!confBaseDir?.length) confBaseDir = '.conf';
 
   const appYmlBase = process.cwd();
   const ymlEnvBaseName = STAGE_MAP[stage] ?? STAGE_MAP['prod'];
