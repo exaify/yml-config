@@ -1,6 +1,6 @@
 {
   "name": "@exaify/yml-config",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Extending @nestjs/config library functionality",
   "scripts": {
     "postinstall": "npx only-allow pnpm",
