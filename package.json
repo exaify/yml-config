@@ -11,6 +11,11 @@
     "lint": "eslint \"lib/**/*.ts\" --fix",
     "lint-staged": "lint-staged",
     "test:e2e": "cross-env STAGE=test jest --config ./tests/jest-e2e.json --runInBand --coverage",
+    "prerelease": "npm run build",
+    "release": "npm run release:only",
+    "postrelease": "npm run push:changelog",
+    "release:only": "changeset publish --registry=https://registry.npmjs.com",
+    "push:changelog": "node scripts/push-changelog.mjs",
     "prepare": "husky"
   },
   "keywords": [],
