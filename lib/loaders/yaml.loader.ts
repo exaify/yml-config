@@ -3,6 +3,7 @@ import { existsSync, readdirSync, statSync, readFileSync } from 'fs';
 import { resolve, join, isAbsolute } from 'path';
 import * as yaml from 'js-yaml';
 import { APP_CONFIG_FILE } from '../config.constants';
+import { Logger } from '@nestjs/common';
 
 const STAGE_MAP: { [k: string]: StageEnvType } = {
   development: 'dev',
@@ -69,6 +70,9 @@ export const yamlConfigLoader = () => {
     console.warn(
       `Application load configuration \x1B[34m${files.join(',')}\x1B[0m`,
     );
+    // Logger.log(
+    //   `Application load configuration \x1B[34m${files.join(',')}\x1B[0m`,
+    // );
   }
 
   return {

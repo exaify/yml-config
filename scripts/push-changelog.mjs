@@ -3,11 +3,6 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
 async function main() {
-  // const { default: pkg } = await import('../package.json', {
-  //   assert: {
-  //     type: 'json',
-  //   },
-  // });
   const pkg = await require('../package.json');
   console.log(pkg);
 
