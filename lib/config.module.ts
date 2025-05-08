@@ -73,7 +73,14 @@ export class YmlConfigModule {
       };
     }
 
-    // yml
+    // ymlbase handle
+    if (options.ymlBase?.length) {
+      config = {
+        ...config,
+        YML_CONF_BASE: options.ymlBase,
+      };
+      this.assignVariablesToProcess(config);
+    }
 
     // validating environment variables
     if (options.validate) {

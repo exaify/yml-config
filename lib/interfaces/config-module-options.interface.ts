@@ -80,4 +80,12 @@ export interface ConfigModuleOptions<
    * this property is set to true.
    */
   expandVariables?: boolean | DotenvExpandOptions;
+
+  /**
+   * When register ymlConfigLoader, the ymlBase default with '.conf'.
+   * IF ymlBase set ymlConfigLoader loaded with ymlBase/<STAGE>/*.{yml|yaml}
+   * Notion: if registed ymlConfigLoader, will check your ymlBase has app.yml
+   *
+   */
+  ymlBase?: string;
 }

@@ -2,21 +2,22 @@ import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
 
-describe('forFeature()', () => {
+describe('Symbol Files', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
-      imports: [AppModule.withForFeature()],
+      imports: [AppModule.withSymbolLoadedConfigurations()],
     }).compile();
 
     app = module.createNestApplication();
     await app.init();
   });
 
-  it(`should load configuration with "forFeature()"`, () => {
-    const host = app.get(AppModule).getDatabaseHost();
-    expect(host).toEqual('host');
+  it(`should return symbol loaded configuration`, () => {
+    const config = app.get(AppModule).getSymbolDatabaseConfig();
+    expect(config.host).toEqual('host');
+    expect(config.port).toEqual(3306);
   });
 
   afterEach(async () => {

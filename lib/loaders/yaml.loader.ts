@@ -9,6 +9,7 @@ const STAGE_MAP: { [k: string]: StageEnvType } = {
   develop: 'dev',
   dev: 'dev',
   test: 'test',
+  testing: 'test',
   stage: 'stage',
   production: 'prod',
   prod: 'prod',
@@ -64,7 +65,7 @@ export const yamlConfigLoader = () => {
     };
   });
 
-  if (ymlEnvBaseName === 'dev') {
+  if (['dev', 'test'].includes(ymlEnvBaseName)) {
     console.warn(
       `Application load configuration \x1B[34m${files.join(',')}\x1B[0m`,
     );

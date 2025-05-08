@@ -20,5 +20,8 @@
         "tsconfig": "./tests/tsconfig.json"
       }
     ]
+  },
+  "globals": {
+    "STAGE": "test"
   }
 }

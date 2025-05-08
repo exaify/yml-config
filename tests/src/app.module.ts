@@ -6,6 +6,10 @@ import databaseConfig from './database.config';
 import nestedDatabaseConfig from './nested-database.config';
 import { YmlConfigModule } from '../../lib/config.module';
 import { join } from 'path';
+import symbolDatabaseConfig, {
+  DATABASE_SYMBOL_TOKEN,
+} from './symbol-database.config';
+import { yamlConfigLoader } from '../../lib';
 
 type Config = {
   database: ConfigType<typeof databaseConfig> & {
@@ -103,6 +107,30 @@ export class AppModule {
     };
   }
 
+  static withLoadedYmlAsyncConfigurations(): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        YmlConfigModule.forRoot({
+          load: [yamlConfigLoader],
+          ymlBase: 'tests/.conf',
+        }),
+      ],
+    };
+  }
+
+  static withLoadedAbsulteYmlAsyncConfigurations(): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        YmlConfigModule.forRoot({
+          load: [yamlConfigLoader],
+          ymlBase: join(__dirname, '.conf'),
+        }),
+      ],
+    };
+  }
+
   static withNestedLoadedConfigurations(): DynamicModule {
     return {
       module: AppModule,
@@ -114,12 +142,50 @@ export class AppModule {
     };
   }
 
+  static withSymbolLoadedConfigurations(): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        YmlConfigModule.forRoot({
+          load: [symbolDatabaseConfig],
+        }),
+      ],
+    };
+  }
+
+  static withLoadedConfigurations(): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        YmlConfigModule.forRoot({
+          load: [databaseConfig],
+        }),
+      ],
+    };
+  }
+
   // instance method
   getDatabaseHost() {
     return this.configService.get('database.host');
   }
 
+  getAppName() {
+    return this.configService.get('app.name');
+  }
+
+  getYmlNestedConfiguration(propertyPath: string) {
+    return this.configService.get(propertyPath);
+  }
+
+  getDatabaseConfig() {
+    return this.dbConfig;
+  }
+
   getNestedDatabaseHost() {
     return this.configService.get('database.driver.host');
+  }
+
+  getSymbolDatabaseConfig() {
+    return this.configService.get(DATABASE_SYMBOL_TOKEN);
   }
 }

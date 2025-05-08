@@ -6,7 +6,7 @@
     "build": "rimraf -rf dist && tsc -p tsconfig.json",
     "format": "prettier --write \"{lib,tests}/**/*.ts\"",
     "lint": "eslint \"lib/**/*.ts\" --fix",
-    "test": "jest --config ./tests/jest-e2e.json --runInBand --coverage",
+    "test": "cross-env STAGE=test jest --config ./tests/jest-e2e.json --runInBand --coverage",
     "prepare": "husky"
   },
   "keywords": [],
@@ -30,6 +30,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/lodash": "^4.17.16",
     "@types/node": "^22.15.11",
+    "cross-env": "^7.0.3",
     "eslint": "^9.26.0",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-prettier": "^5.4.0",

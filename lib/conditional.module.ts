@@ -29,6 +29,13 @@ const getInstanceName = (instance: unknown): string | undefined => {
  * @publicApi
  */
 export class ConditionalModule {
+  /**
+   * @publicApi
+   * @param module
+   * @param condition
+   * @param options
+   * @returns
+   */
   static async registerWhen(
     module: Required<ModuleMetadata>['imports'][number],
     condition: string | ((env: NodeJS.ProcessEnv) => boolean),
@@ -72,8 +79,8 @@ export class ConditionalModule {
           ConditionalModule.name,
         );
       }
-
-      return returnModule;
     }
+
+    return returnModule;
   }
 }
