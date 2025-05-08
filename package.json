@@ -1,18 +1,29 @@
 {
   "name": "@exaify/yml-config",
   "version": "0.0.0",
-  "description": "extension @nestjs/config module",
+  "description": "Extending @nestjs/config library functionality",
   "scripts": {
-    "build": "rimraf -rf dist && tsc -p tsconfig.json",
+    "postinstall": "npx only-allow pnpm",
+    "clean": "rimraf -rf dist",
+    "prebuild": "npm run clean",
+    "build": "tsc -p tsconfig.json",
     "format": "prettier --write \"{lib,tests}/**/*.ts\"",
     "lint": "eslint \"lib/**/*.ts\" --fix",
-    "test": "cross-env STAGE=test jest --config ./tests/jest-e2e.json --runInBand --coverage",
+    "lint-staged": "lint-staged",
+    "test:e2e": "cross-env STAGE=test jest --config ./tests/jest-e2e.json --runInBand --coverage",
     "prepare": "husky"
   },
   "keywords": [],
   "author": "Jnaruto",
   "license": "MIT",
-  "packageManager": "pnpm@10.6.2",
+  "homepage": "https://github.com/exaify/yml-config#readme.md",
+  "bugs": {
+    "url": "https://github.com/exaify/yml-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exaify/yml-config"
+  },
   "dependencies": {
     "dotenv": "^16.5.0",
     "dotenv-expand": "^12.0.2",
@@ -20,6 +31,11 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.29.3",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/types": "^19.8.1",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.26.0",
     "@nestjs/common": "^11.1.0",
@@ -48,6 +64,19 @@
   },
   "peerDependencies": {
     "@nestjs/common": "^10.0.0 || ^11.0.0",
+    "js-yaml": "^4.1.0",
     "rxjs": "^7.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "npm": {
+    "publish": false
+  },
+  "lint-staged": {
+    "*.{ts,js,mjs,json,vue,tsx,jsx}": [
+      "prettier \"**/**/*.{ts,tsx,js,jsx,json,mjs}\" --write",
+      "npm run lint"
+    ]
   }
 }
