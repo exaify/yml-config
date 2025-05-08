@@ -54,7 +54,7 @@ export class YmlConfigModule {
    * @returns DynamicModule
    */
   static async forRoot<ValidationOptions extends Record<string, any>>(
-    options: ConfigModuleOptions<ValidationOptions>,
+    options: ConfigModuleOptions<ValidationOptions> = {},
   ): Promise<DynamicModule> {
     const envFilePaths = Array.isArray(options.envFilePath)
       ? options.envFilePath
@@ -73,6 +73,9 @@ export class YmlConfigModule {
       };
     }
 
+    // yml
+
+    // validating environment variables
     if (options.validate) {
       const validatedConfig = options.validate(config);
       validatedEnvConfig = validatedConfig;

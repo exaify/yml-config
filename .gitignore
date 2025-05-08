@@ -19,3 +19,7 @@ npm-debug.log
 dist
 
 pnpm-lock.yaml
+
+# yml
+.conf/**/*.yml
+.conf/**/*.yaml

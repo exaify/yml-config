@@ -13,6 +13,7 @@ const STAGE_MAP: { [k: string]: StageEnvType } = {
   production: 'prod',
   prod: 'prod',
 };
+
 /**
  * If you modify yml config basedir you can SET env.YML_CONF_BASE
  *
@@ -37,9 +38,10 @@ export const yamlConfigLoader = () => {
   const files =
     readdirSync(confDir, { recursive: false, encoding: 'utf-8' }) ?? [];
 
+  // only read yml or yaml and not contain app.yml
   const configs = files
     .filter(f => f.toLowerCase() !== APP_CONFIG_FILE)
-    .filter(f => f.endsWith('.yml'))
+    .filter(f => f.endsWith('.yml') || f.endsWith('.yaml'))
     .filter(f => statSync(resolve(confDir, f)).isFile());
 
   console.log(
