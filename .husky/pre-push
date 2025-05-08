@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo -e "\x1B[34mnot do anything.\x1B[0m"
