@@ -18,7 +18,15 @@
     "push:changelog": "node scripts/push-changelog.mjs",
     "prepare": "husky"
   },
-  "keywords": [],
+  "keywords": [
+    "@nestjs/config",
+    "yml"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "author": "Jnaruto",
   "license": "MIT",
   "homepage": "https://github.com/exaify/yml-config#readme.md",
