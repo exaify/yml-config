@@ -1,7 +1,7 @@
-<h1 align="center">@exaify/yaml-config</h1>
+<h1 align="center">@exaify/yml-config</h1>
 <p align="center" >
   <a href="https://github.com/exaify" target="blank">
-    <img src="https://ucarecdn.com/eac2c945-177d-4fc9-8bc1-fa2be48ad3a2/lotolab_golden.svg" width="100" alt="Xaify Logo" />
+    <img src="https://ucarecdn.com/eac2c945-177d-4fc9-8bc1-fa2be48ad3a2/lotolab_golden.svg" width="100" alt="exaify Logo" />
   </a>
 </p>
 
